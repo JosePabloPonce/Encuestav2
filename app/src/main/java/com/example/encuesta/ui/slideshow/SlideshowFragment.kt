@@ -48,6 +48,8 @@ class SlideshowFragment : Fragment() {
 
 
 
+
+
         if (llamarvariable.mutablepreguntas.size == 0){
             preguntatoca.text = llamarvariable.mutablepreguntasfinales.get(contadorfinales)
             contadorfinales++

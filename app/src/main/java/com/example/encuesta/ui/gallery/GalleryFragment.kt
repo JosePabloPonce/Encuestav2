@@ -2,6 +2,7 @@ package com.example.encuesta.ui.gallery
 
 import android.os.Bundle
 import android.view.*
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.example.encuesta.variable
 import kotlinx.android.synthetic.main.fragment_gallery.*
 
 class GalleryFragment : Fragment() {
+
     private var root: View? = null
     private lateinit var galleryViewModel: GalleryViewModel
     private val llamarvariable by lazy {
@@ -25,6 +27,7 @@ class GalleryFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val tipopreguntas = arrayOf("Texto", "Numero", "Rating")
         galleryViewModel = ViewModelProviders.of(this).get(GalleryViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
         return root
@@ -33,6 +36,8 @@ class GalleryFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
@@ -43,6 +48,7 @@ class GalleryFragment : Fragment() {
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         val id = item!!.itemId
         if (id == R.id.guardar) {
             llamarvariable.mutablepreguntas.add(ingresadaagregada.text.toString())

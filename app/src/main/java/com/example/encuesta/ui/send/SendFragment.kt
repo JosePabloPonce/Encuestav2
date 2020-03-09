@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.encuesta.R
+import com.example.encuesta.variable
+import kotlinx.android.synthetic.main.fragment_send.*
 
 class SendFragment : Fragment() {
+    private val llamarvariable by lazy { ViewModelProviders.of(activity!!).get(variable::class.java)
+    }
 
     private lateinit var sendViewModel: SendViewModel
 
@@ -19,13 +23,13 @@ class SendFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sendViewModel =
-            ViewModelProviders.of(this).get(SendViewModel::class.java)
+        sendViewModel =ViewModelProviders.of(this).get(SendViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_send, container, false)
-        val textView: TextView = root.findViewById(R.id.text_send)
-        sendViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        ponerrespuestas.text = llamarvariable.mutablerespuestas.toString()
+        super.onViewCreated(view, savedInstanceState)
     }
 }
